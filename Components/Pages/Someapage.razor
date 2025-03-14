@@ -1,0 +1,41 @@
+﻿@page "/pages/somepage"
+
+<h3>Victory Page</h3>
+
+<p>Welcome to the Victory Page! This is your winning entry. 🚀</p>
+
+<div>
+    <label>Enter your name: </label>
+    <input @bind="UserName" placeholder="Your name..." />
+</div>
+
+<div>
+    <label>Select your prize: </label>
+    <select @bind="SelectedPrize">
+        <option value="Trophy 🏆">Trophy 🏆</option>
+        <option value="Medal 🥇">Medal 🥇</option>
+        <option value="Certificate 📜">Certificate 📜</option>
+    </select>
+</div>
+
+<button @onclick="ClaimVictory">Claim Victory</button>
+
+<p>@message</p>
+
+@code {
+    private string UserName { get; set; } = "";
+    private string SelectedPrize { get; set; } = "Trophy 🏆";
+    private string message = "";
+
+    private void ClaimVictory()
+    {
+        if (string.IsNullOrWhiteSpace(UserName))
+        {
+            message = "Please enter your name to claim victory!";
+        }
+        else
+        {
+            message = $"Congratulations, {UserName}! You have won a {SelectedPrize}! 🎉";
+        }
+    }
+}
